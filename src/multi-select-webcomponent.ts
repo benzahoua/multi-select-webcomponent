@@ -48,7 +48,7 @@ export default class MultiselectWebcomponent extends HTMLElement {
     this.parentNode?.insertBefore(this.dropdown, this.nextSibling);
 
     // Events
-    this.addEventListener('click', () => this.onMultiselectClick());
+    // this.addEventListener('click', () => this.onMultiselectClick());
     this.parentElement?.addEventListener('mouseleave', () => this.dropdown.style.display = 'none');
 
     // Attributes
@@ -281,7 +281,7 @@ export default class MultiselectWebcomponent extends HTMLElement {
       }
     } else {
       for (const option of this.options) {
-        if (!option.selected && option.textContent && option.textContent.toLocaleUpperCase().indexOf(this.searchbox.value.toLocaleUpperCase()) >= 0) {
+        if (!option.selected && option.textContent && option.textContent.toLowerCase().startsWith(this.searchbox.value.toLowerCase()) ) {
           this.dropdown.appendChild(this.buildDropdownItem(option)); // build with search results
         }
       }
